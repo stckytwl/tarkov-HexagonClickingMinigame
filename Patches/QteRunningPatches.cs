@@ -42,6 +42,8 @@ namespace stckytwl.OSU.Patches
         private static void PatchPostfix(HideoutPlayerOwner __instance)
         {
             Plugin.IsQteRunning = false;
+            BeatmapLoader.LoadedAudioSource?.Release();
+            BeatmapLoader.LoadedAudioSource = null;
         }
     }
 }

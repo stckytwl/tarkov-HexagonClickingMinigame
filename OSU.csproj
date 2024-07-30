@@ -91,6 +91,15 @@
         <Reference Include="UnityEngine.UI">
             <HintPath>$(TarkovManagedDir)UnityEngine.UI.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+            <HintPath>$(TarkovManagedDir)UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+            <HintPath>$(TarkovManagedDir)UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>$(TarkovManagedDir)UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Models\Beatmap.cs" />
@@ -114,10 +123,11 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Components\" />
-      <Folder Include="Resources\" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="PeanutButter.INI\LICENSE.txt" />
+      <Content Include="README.md" />
+      <Content Include="Resources\beatmaps\tarkin\tarkin.osu" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 
@@ -138,5 +148,4 @@
         <Copy SourceFiles="@(Resources)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
         <ZipDirectory SourceDirectory="$(ProjectDir)release\$(TargetName)\" DestinationFile="$(ProjectDir)release\$(TargetName)-$(TargetSptVersion)-$(SourceRevisionId).zip"/>
     </Target>
-
 </Project>

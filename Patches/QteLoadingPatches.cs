@@ -1,8 +1,7 @@
 using System;
 using System.Reflection;
 using Aki.Reflection.Patching;
-using Comfort.Logs;
-using EFT.Communications;
+using Comfort.Common;
 using EFT.Hideout;
 using stckytwl.OSU.Models;
 using UnityEngine;
@@ -23,13 +22,11 @@ namespace stckytwl.OSU.Patches
             {
                 BeatmapLoader.LoadBeatmap();
             }
-            #pragma warning disable CS0168
-            catch (Exception _)
-            #pragma warning restore CS0168
+            catch (Exception)
             {
                 PluginUtils.Logger.LogError($"Beatmap loading failed! Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt");
-                NotificationManagerClass.DisplayWarningNotification("Beatmap loading failed!", ENotificationDurationType.Long);
-                NotificationManagerClass.DisplayWarningNotification($"Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt!", ENotificationDurationType.Long);
+                PluginUtils.DisplayWarningNotification("Beatmap loading failed!");
+                PluginUtils.DisplayWarningNotification($"Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt!");
                 quickTimeEvents = Array.Empty<QuickTimeEvent>();
                 return true;
             }
@@ -45,6 +42,15 @@ namespace stckytwl.OSU.Patches
             }
 
             quickTimeEvents = newQuickTimeEvents;
+
+            if (BeatmapLoader.LoadedBeatMap.Audio is not null)
+            {
+                BeatmapLoader.LoadedAudioSource = Singleton<BetterAudio>.Instance.PlayAtPoint(new Vector3(),
+                    BeatmapLoader.LoadedBeatMap.Audio,
+                    0f,
+                    BetterAudio.AudioSourceGroupType.Nonspatial,
+                    100);
+            }
 
             return true;
         }
