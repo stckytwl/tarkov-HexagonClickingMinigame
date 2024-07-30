@@ -1,0 +1,85 @@
+osu file format v14
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Countdown: 0
+SampleSet: Drum
+StackLeniency: 0.7
+Mode: 0
+LetterboxInBreaks: 0
+WidescreenStoryboard: 0
+
+[Editor]
+DistanceSpacing: 1.2
+BeatDivisor: 4
+GridSize: 8
+TimelineZoom: 1
+
+[Metadata]
+Title:new tarkov gym update is crazy
+TitleUnicode:new tarkov gym update is crazy
+Artist:tarkin
+ArtistUnicode:tarkin
+Creator:lilcumtowel
+Version:Normal
+Source:
+Tags:
+BeatmapID:0
+BeatmapSetID:-1
+
+[Difficulty]
+HPDrainRate:5
+CircleSize:6
+OverallDifficulty:5
+ApproachRate:8
+SliderMultiplier:2
+SliderTickRate:2
+
+[Events]
+//Background and Video events
+//Break Periods
+//Storyboard Layer 0 (Background)
+//Storyboard Layer 1 (Fail)
+//Storyboard Layer 2 (Pass)
+//Storyboard Layer 3 (Foreground)
+//Storyboard Layer 4 (Overlay)
+//Storyboard Sound Samples
+
+[TimingPoints]
+15163.6609301574,472.44094488189,4,3,0,100,1,0
+
+
+[HitObjects]
+254,290,3943,1,0,0:0:0:0:
+254,290,4888,1,0,0:0:0:0:
+254,290,5714,1,0,0:0:0:0:
+254,290,6659,1,0,0:0:0:0:
+254,290,7604,1,0,0:0:0:0:
+254,290,8549,1,0,0:0:0:0:
+254,290,9494,1,0,0:0:0:0:
+254,290,10439,1,0,0:0:0:0:
+254,290,11384,1,0,0:0:0:0:
+254,290,12210,1,0,0:0:0:0:
+373,97,13155,1,0,0:0:0:0:
+257,95,13982,1,0,0:0:0:0:
+88,193,14336,1,0,0:0:0:0:
+192,192,14573,1,0,0:0:0:0:
+312,194,14691,1,0,0:0:0:0:
+410,195,14809,1,0,0:0:0:0:
+343,295,15163,1,0,0:0:0:0:
+335,288,15281,1,0,0:0:0:0:
+170,297,15517,1,0,0:0:0:0:
+162,290,15636,1,0,0:0:0:0:
+312,194,15872,1,0,0:0:0:0:
+275,103,16108,1,0,0:0:0:0:
+149,111,16226,1,0,0:0:0:0:
+184,214,16344,1,0,0:0:0:0:
+212,255,16462,1,0,0:0:0:0:
+237,292,16580,1,0,0:0:0:0:
+345,244,16698,1,0,0:0:0:0:
+335,231,16817,1,0,0:0:0:0:
+213,214,17053,1,0,0:0:0:0:
+301,155,17289,1,0,0:0:0:0:
+281,134,17407,1,0,0:0:0:0:
