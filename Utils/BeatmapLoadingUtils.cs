@@ -25,7 +25,7 @@ namespace stckytwl.OSU
 
             var beatmapPath = Plugin.Directory + Plugin.BeatmapPath.Value;
 
-            if (!VerifyBeatmapFolder(beatmapPath, out var osuFile, out var audioClip))
+            if (!VerifyBeatmapFolder(beatmapPath, out var osuFile))
             {
                 LoadedBeatMap = new Beatmap("", null, new List<HitObject>(), 0.825f);
                 return;
@@ -57,15 +57,14 @@ namespace stckytwl.OSU
                 break;
             }
 
-            var beatmap = new Beatmap(beatmapName, audioClip, hitObjects, 0.825f);
+            var beatmap = new Beatmap(beatmapName, null, hitObjects, 0.825f);
             LoadedBeatMap = beatmap;
             PluginUtils.DisplayMessageNotification($"Loaded Beatmap {beatmapName}");
         }
 
-        private static bool VerifyBeatmapFolder(string folderPath, out string osuFile, out AudioClip audioFile)
+        private static bool VerifyBeatmapFolder(string folderPath, out string osuFile)
         {
             osuFile = null;
-            audioFile = null;
 
             if (!Directory.Exists(folderPath))
             {
@@ -88,28 +87,11 @@ namespace stckytwl.OSU
                             osuFile = file;
                             PluginUtils.Logger.LogInfo($"Using \"{osuFile}\" as osu file.");
                         }
-
-                        break;
-                    case ".wav":
-                        if (audioFile is null)
-                        {
-                            PluginUtils.Logger.LogInfo($"Attempting to load \"{file}\" as audio file.");
-                            var clip = LoadAudioFile(file);
-                            if (clip.Result is null)
-                            {
-                                PluginUtils.Logger.LogWarning($"Audio file \"{file}\" is unsupported or corrupt!");
-                                continue;
-                            }
-
-                            audioFile = clip.Result;
-                            PluginUtils.Logger.LogInfo($"Using \"{audioFile}\" as audio file.");
-                        }
-
                         break;
                 }
             }
 
-            return osuFile is not null && audioFile is not null;
+            return osuFile is not null;
         }
 
         private static bool ParseHitObject(string rawHitObject, out HitObject hitObject)
@@ -172,44 +154,6 @@ namespace stckytwl.OSU
             var resolution = displaySettings.Resolution;
 
             return resolution;
-        }
-
-        private static async Task<AudioClip> LoadAudioFile(string audioPath)
-        {
-            var extension = Path.GetExtension(audioPath);
-            AudioType audioType;
-            switch (extension)
-            {
-                case ".wav":
-                    audioType = AudioType.WAV;
-                    break;
-                case ".ogg":
-                    audioType = AudioType.OGGVORBIS;
-                    break;
-                case ".mp3":
-                    audioType = AudioType.MPEG;
-                    break;
-                default:
-                    PluginUtils.Logger.LogWarning(
-                        $"\"{Path.GetFileName(audioPath)}\" is not a valid audio file!");
-                    return null;
-            }
-
-            var uwr = UnityWebRequestMultimedia.GetAudioClip(audioPath, audioType);
-            var sendWeb = uwr.SendWebRequest();
-
-            while (!sendWeb.isDone) await Task.Yield();
-
-            if (uwr.isNetworkError || uwr.isHttpError)
-            {
-                PluginUtils.Logger.LogError(
-                    $"Failed To Fetch Audio Clip \"{Path.GetFileNameWithoutExtension(audioPath)}\"");
-                return null;
-            }
-
-            var audioClip = DownloadHandlerAudioClip.GetContent(uwr);
-            audioClip.name = Path.GetFileNameWithoutExtension(audioPath);
-            return audioClip;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace stckytwl.OSU.Patches
 
             QuickTimeEvent qte = new(type, position, speed, startDelay, endDelay, successRange, key);
 
-            PluginUtils.Logger.LogDebug($"{type}, {position}, {speed}, {startDelay}, {endDelay}, {successRange}, {key}");
+            //PluginUtils.Logger.LogDebug($"{type}, {position}, {speed}, {startDelay}, {endDelay}, {successRange}, {key}");
             return qte;
         }
     }

@@ -17,7 +17,7 @@ namespace stckytwl.OSU.Patches
         // ReSharper disable once InconsistentNaming
         private static void PatchPostFix(ref QTEAction __result)
         {
-            PluginUtils.Logger.LogDebug(__result.RectTransform().localScale);
+            //PluginUtils.Logger.LogDebug(__result.RectTransform().localScale);
             __result.RectTransform().localScale = new Vector3(1, 1) * BeatmapLoader.LoadedBeatMap.CircleSize;
         }
     }
