@@ -24,9 +24,11 @@ namespace stckytwl.OSU.Patches
             }
             catch (Exception)
             {
-                PluginUtils.Logger.LogError($"Beatmap loading failed! Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt");
+                PluginUtils.Logger.LogError(
+                    $"Beatmap loading failed! Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt");
                 PluginUtils.DisplayWarningNotification("Beatmap loading failed!");
-                PluginUtils.DisplayWarningNotification($"Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt!");
+                PluginUtils.DisplayWarningNotification(
+                    $"Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt!");
                 quickTimeEvents = Array.Empty<QuickTimeEvent>();
                 return true;
             }
@@ -44,13 +46,11 @@ namespace stckytwl.OSU.Patches
             quickTimeEvents = newQuickTimeEvents;
 
             if (BeatmapLoader.LoadedBeatMap.Audio is not null)
-            {
                 BeatmapLoader.LoadedAudioSource = Singleton<BetterAudio>.Instance.PlayAtPoint(new Vector3(),
                     BeatmapLoader.LoadedBeatMap.Audio,
                     0f,
                     BetterAudio.AudioSourceGroupType.Nonspatial,
                     100);
-            }
 
             return true;
         }

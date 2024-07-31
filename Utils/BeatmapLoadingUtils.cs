@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using Aki.Common.Utils;
 using Comfort.Common;
 using EFT.Settings.Graphics;
 using PeanutButter.INI;
 using stckytwl.OSU.Models;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace stckytwl.OSU
 {
@@ -87,6 +85,7 @@ namespace stckytwl.OSU
                             osuFile = file;
                             PluginUtils.Logger.LogInfo($"Using \"{osuFile}\" as osu file.");
                         }
+
                         break;
                 }
             }

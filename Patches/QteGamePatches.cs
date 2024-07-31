@@ -1,6 +1,5 @@
 using System.Reflection;
 using Aki.Reflection.Patching;
-using Comfort.Common;
 using EFT.Hideout;
 using UnityEngine;
 

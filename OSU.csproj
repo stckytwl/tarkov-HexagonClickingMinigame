@@ -70,12 +70,12 @@
         <Reference Include="DOTween.Modules">
             <HintPath>$(TarkovManagedDir)DOTween.Modules.dll</HintPath>
         </Reference>
-        <Reference Include="Microsoft.CSharp" />
-        <Reference Include="mscorlib" />
+        <Reference Include="Microsoft.CSharp"/>
+        <Reference Include="mscorlib"/>
         <Reference Include="Newtonsoft.Json">
             <HintPath>$(TarkovManagedDir)Newtonsoft.Json.dll</HintPath>
         </Reference>
-        <Reference Include="System" />
+        <Reference Include="System"/>
         <Reference Include="UnityEngine">
             <HintPath>$(TarkovManagedDir)UnityEngine.dll</HintPath>
         </Reference>
@@ -102,24 +102,24 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Models\Beatmap.cs" />
-        <Compile Include="Models\HitObjects.cs" />
-        <Compile Include="Patches\QteGamePatches.cs" />
-        <Compile Include="Patches\QteInteractionPatches.cs" />
-        <Compile Include="Patches\QteLoadingPatches.cs" />
-        <Compile Include="Patches\QteRunningPatches.cs" />
-        <Compile Include="PeanutButter.INI\BestEffortLineParser.cs" />
-        <Compile Include="PeanutButter.INI\DictionaryWrappingINIFileSection.cs" />
-        <Compile Include="PeanutButter.INI\EmptyEnumerator.cs" />
-        <Compile Include="PeanutButter.INI\ILineParser.cs" />
-        <Compile Include="PeanutButter.INI\INIFile.cs" />
-        <Compile Include="PeanutButter.INI\MergedIniFile.cs" />
-        <Compile Include="PeanutButter.INI\StrictLineParser.cs" />
+        <Compile Include="Models\Beatmap.cs"/>
+        <Compile Include="Models\HitObjects.cs"/>
+        <Compile Include="Patches\QteGamePatches.cs"/>
+        <Compile Include="Patches\QteInteractionPatches.cs"/>
+        <Compile Include="Patches\QteLoadingPatches.cs"/>
+        <Compile Include="Patches\QteRunningPatches.cs"/>
+        <Compile Include="PeanutButter.INI\BestEffortLineParser.cs"/>
+        <Compile Include="PeanutButter.INI\DictionaryWrappingINIFileSection.cs"/>
+        <Compile Include="PeanutButter.INI\EmptyEnumerator.cs"/>
+        <Compile Include="PeanutButter.INI\ILineParser.cs"/>
+        <Compile Include="PeanutButter.INI\INIFile.cs"/>
+        <Compile Include="PeanutButter.INI\MergedIniFile.cs"/>
+        <Compile Include="PeanutButter.INI\StrictLineParser.cs"/>
         <Compile Include="Plugin.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="Properties\ConfigurationManagerAttributes.cs"/>
-        <Compile Include="Utils\BeatmapLoadingUtils.cs" />
-        <Compile Include="Utils\PluginUtils.cs" />
+        <Compile Include="Utils\BeatmapLoadingUtils.cs"/>
+        <Compile Include="Utils\PluginUtils.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 

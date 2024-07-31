@@ -30,7 +30,9 @@ namespace stckytwl.OSU
 
         private void InitializeSettings()
         {
-            BeatmapPath = Config.Bind("", "Beatmap file path", "tarkin",
+            BeatmapPath = Config.Bind("",
+                "Beatmap file path",
+                "tarkin",
                 new ConfigDescription("Path to beatmap folder relative to \"BepInEx/Plugins/stckytwl.OSU\""));
         }
     }

@@ -38,8 +38,7 @@ namespace stckytwl.OSU.Models
         }
     }
 
-    [Flags]
-    public enum HitTypes
+    [Flags] public enum HitTypes
     {
         HitCircle = 1 << 0,
         Slider = 1 << 1,
