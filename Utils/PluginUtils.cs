@@ -1,6 +1,6 @@
 using BepInEx.Logging;
 
-namespace stckytwl.CircleClickingGame
+namespace stckytwl.HexagonClickingMinigame
 {
     public static class PluginUtils
     {

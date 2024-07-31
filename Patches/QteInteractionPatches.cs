@@ -6,7 +6,7 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace stckytwl.CircleClickingGame.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteEnableCursorPatch : ModulePatch
     {

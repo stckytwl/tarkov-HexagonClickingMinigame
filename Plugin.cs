@@ -1,11 +1,11 @@
 using System;
 using BepInEx;
-using stckytwl.CircleClickingGame.Patches;
 using DrakiaXYZ.VersionChecker;
+using stckytwl.HexagonClickingMinigame.Patches;
 
-namespace stckytwl.CircleClickingGame
+namespace stckytwl.HexagonClickingMinigame
 {
-    [BepInPlugin("com.stckytwl.circleclickinggame", "CircleClickingGame", "1.0.0")]
+    [BepInPlugin("com.stckytwl.hexagonclickingminigame", "HexagonClickingMinigame", "1.0.0")]
     public class Plugin : BaseUnityPlugin
     {
 

@@ -4,7 +4,7 @@ using EFT.Hideout;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace stckytwl.CircleClickingGame.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteLoadBeatMapPatch : ModulePatch
     {

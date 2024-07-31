@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using DrakiaXYZ.VersionChecker;
 
-[assembly: AssemblyTitle("CircleClickingGame")]
+[assembly: AssemblyTitle("HexagonClickingMinigame")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]

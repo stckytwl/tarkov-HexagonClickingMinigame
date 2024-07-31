@@ -8,11 +8,12 @@
         <ProjectGuid>{8FDFC616-1704-4056-A87E-2783692CC153}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>stckytwl.CircleClickingGame</RootNamespace>
-        <AssemblyName>CircleClickingGame</AssemblyName>
+        <RootNamespace>stckytwl.HexagonClickingMinigame</RootNamespace>
+        <AssemblyName>HexagonClickingMinigame</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
+        <Deterministic>true</Deterministic>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -107,11 +108,11 @@
             <Resources Include="$(ProjectDir)Resources\*"/>
         </ItemGroup>
 
-        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>
+        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\"/>
 
         <RemoveDir Directories="$(ProjectDir)release"/>
-        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
-        <Copy SourceFiles="@(Resources)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
+        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\"/>
+        <Copy SourceFiles="@(Resources)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\"/>
         <ZipDirectory SourceDirectory="$(ProjectDir)release\$(TargetName)\" DestinationFile="$(ProjectDir)release\$(TargetName)-$(TargetSptVersion)-$(SourceRevisionId).zip"/>
     </Target>
 </Project>

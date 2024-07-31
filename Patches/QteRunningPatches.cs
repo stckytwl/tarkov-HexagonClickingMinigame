@@ -3,7 +3,7 @@ using SPT.Reflection.Patching;
 using EFT.Hideout;
 using HarmonyLib;
 
-namespace stckytwl.CircleClickingGame.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteRunningPatch : ModulePatch
     {
