@@ -32,22 +32,22 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup>
-        <TarkovDir Condition=" '$(TarkovDir)' == '' ">/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.8.3 Dev\</TarkovDir>
-        <TarkovManagedDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.8.3 Dev\EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
-        <TarkovBepInExCoreDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.8.3 Dev\BepInEx\core\</TarkovBepInExCoreDir>
-        <TarkovBepInExSptPluginDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.8.3 Dev\BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
-        <TargetSptVersion>3.8.3</TargetSptVersion>
+        <TarkovDir Condition=" '$(TarkovDir)' == '' ">/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/</TarkovDir>
+        <TarkovManagedDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
+        <TarkovBepInExCoreDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/BepInEx\core\</TarkovBepInExCoreDir>
+        <TarkovBepInExSptPluginDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
+        <TargetSptVersion>3.9.4</TargetSptVersion>
         <SourceRevisionId>1.0.0</SourceRevisionId>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony">
             <HintPath>$(TarkovBepInExCoreDir)0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Common">
-            <HintPath>$(TarkovManagedDir)Aki.Common.dll</HintPath>
+        <Reference Include="spt-common">
+            <HintPath>$(TarkovBepInExSptPluginDir)spt-common.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Reflection">
-            <HintPath>$(TarkovManagedDir)Aki.Reflection.dll</HintPath>
+        <Reference Include="spt-reflection">
+            <HintPath>$(TarkovBepInExSptPluginDir)spt-reflection.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(TarkovManagedDir)Assembly-CSharp.dll</HintPath>
