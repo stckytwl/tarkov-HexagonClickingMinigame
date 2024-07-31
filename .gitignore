@@ -1,0 +1,7 @@
+﻿bin/
+obj/
+.idea/
+.vscode/
+release/
+Resources/
+OSU.sln.DotSettings.user
