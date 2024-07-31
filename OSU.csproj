@@ -121,14 +121,6 @@
         <Compile Include="Utils\BeatmapLoadingUtils.cs" />
         <Compile Include="Utils\PluginUtils.cs" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Components\" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="PeanutButter.INI\LICENSE.txt" />
-      <Content Include="README.md" />
-      <Content Include="Resources\beatmaps\tarkin\tarkin.osu" />
-    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 
     <!-- Thank you to mpstark for this. Absolute gamechanger. -->
@@ -140,7 +132,6 @@
         </ItemGroup>
 
         <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>
-        <Copy SourceFiles="@(Resources)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>
         <Copy SourceFiles="@(OutputPDB)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>
 
         <RemoveDir Directories="$(ProjectDir)release"/>
