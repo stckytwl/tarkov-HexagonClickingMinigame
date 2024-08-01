@@ -80,6 +80,9 @@
         <Reference Include="UnityEngine.InputModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.InputModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+            <HintPath>$(TarkovManagedDir)UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.UnityWebRequestAudioModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
         </Reference>
