@@ -34,7 +34,7 @@ namespace stckytwl.HexagonClickingMinigame.Patches
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(HideoutPlayerOwner).GetMethod("ExitQte", BindingFlags.Public | BindingFlags.Instance);
+            return AccessTools.Method(typeof(HideoutPlayerOwner), nameof(HideoutPlayerOwner.ExitQte));
         }
 
         [PatchPostfix]

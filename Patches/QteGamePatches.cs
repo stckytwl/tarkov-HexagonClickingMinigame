@@ -1,6 +1,7 @@
 using System.Reflection;
 using SPT.Reflection.Patching;
 using EFT.Hideout;
+using HarmonyLib;
 using UnityEngine;
 
 namespace stckytwl.HexagonClickingMinigame.Patches
@@ -9,7 +10,7 @@ namespace stckytwl.HexagonClickingMinigame.Patches
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(QTEController).GetMethod("method_0", BindingFlags.Public | BindingFlags.Instance);
+            return AccessTools.Method(typeof(QTEController), nameof(QTEController.method_0));
         }
 
         [PatchPostfix]

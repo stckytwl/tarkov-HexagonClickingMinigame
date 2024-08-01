@@ -3,6 +3,7 @@ using System.Reflection;
 using SPT.Reflection.Patching;
 using Comfort.Common;
 using EFT.Hideout;
+using HarmonyLib;
 using stckytwl.HexagonClickingMinigame.Models;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace stckytwl.HexagonClickingMinigame.Patches
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(WorkoutBehaviour).GetMethod("method_12", BindingFlags.Public | BindingFlags.Instance);
+            return AccessTools.Method(typeof(WorkoutBehaviour), nameof(WorkoutBehaviour.method_12));
         }
 
         [PatchPrefix]
