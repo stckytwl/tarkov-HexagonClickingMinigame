@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace stckytwl.OSU.Models
+namespace stckytwl.HexagonClickingMinigame.Models
 {
     public class Beatmap
     {

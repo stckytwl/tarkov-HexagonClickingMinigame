@@ -1,10 +1,10 @@
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using EFT;
 using EFT.Hideout;
 using HarmonyLib;
 
-namespace stckytwl.OSU.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteRunningPatch : ModulePatch
     {

@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Aki.Common.Utils;
+using SPT.Common.Utils;
 using Comfort.Common;
 using EFT.Settings.Graphics;
 using PeanutButter.INI;
-using stckytwl.OSU.Models;
+using stckytwl.HexagonClickingMinigame.Models;
 using UnityEngine;
 
-namespace stckytwl.OSU
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public static class BeatmapLoader
     {
@@ -149,7 +149,7 @@ namespace stckytwl.OSU
         private static EftResolution GetResolution()
         {
             var settings = Singleton<SharedGameSettingsClass>.Instance.Graphics.Settings;
-            var displaySettings = (GStruct236)settings.DisplaySettings;
+            var displaySettings = (GStruct237)settings.DisplaySettings;
             var resolution = displaySettings.Resolution;
 
             return resolution;

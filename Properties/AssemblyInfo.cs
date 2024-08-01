@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using DrakiaXYZ.VersionChecker;
 
-[assembly: AssemblyTitle("OSU  Tarkov")]
+[assembly: AssemblyTitle("HexagonClickingMinigame")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
@@ -16,3 +17,4 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: TarkovVersion(30626)]

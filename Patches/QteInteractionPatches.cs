@@ -1,12 +1,12 @@
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using EFT.Hideout;
 using EFT.InputSystem;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace stckytwl.OSU.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteEnableCursorPatch : ModulePatch
     {

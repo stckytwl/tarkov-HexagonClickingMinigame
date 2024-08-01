@@ -1,12 +1,12 @@
 using System.Reflection;
-using Aki.Common.Utils;
+using SPT.Common.Utils;
 using BepInEx;
 using BepInEx.Configuration;
-using stckytwl.OSU.Patches;
+using stckytwl.HexagonClickingMinigame.Patches;
 
-namespace stckytwl.OSU
+namespace stckytwl.HexagonClickingMinigame
 {
-    [BepInPlugin("com.stckytwl.osu", "OSU Tarkov", "1.0.0")]
+    [BepInPlugin("com.stckytwl.hexagonclickingminigame", "HexagonClickingMinigame", "2.0.0")]
     public class Plugin : BaseUnityPlugin
     {
         public static bool IsQteRunning = false;

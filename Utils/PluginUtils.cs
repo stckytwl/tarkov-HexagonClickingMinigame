@@ -1,7 +1,7 @@
 using BepInEx.Logging;
 using EFT.Communications;
 
-namespace stckytwl.OSU
+namespace stckytwl.HexagonClickingMinigame
 {
     public static class PluginUtils
     {

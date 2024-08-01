@@ -1,12 +1,12 @@
 using System;
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using Comfort.Common;
 using EFT.Hideout;
-using stckytwl.OSU.Models;
+using stckytwl.HexagonClickingMinigame.Models;
 using UnityEngine;
 
-namespace stckytwl.OSU.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches
 {
     public class QteLoadBeatMapPatch : ModulePatch
     {

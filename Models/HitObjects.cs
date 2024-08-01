@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace stckytwl.OSU.Models
+namespace stckytwl.HexagonClickingMinigame.Models
 {
     public abstract class HitObject
     {
