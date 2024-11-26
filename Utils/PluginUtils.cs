@@ -1,9 +1,8 @@
 using BepInEx.Logging;
 
-namespace stckytwl.HexagonClickingMinigame
+namespace stckytwl.HexagonClickingMinigame;
+
+public static class PluginUtils
 {
-    public static class PluginUtils
-    {
-        public static ManualLogSource Logger;
-    }
+    public static ManualLogSource Logger;
 }

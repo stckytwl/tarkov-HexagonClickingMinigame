@@ -1,57 +1,57 @@
 using System.Reflection;
-using SPT.Reflection.Patching;
 using EFT.Hideout;
+using HarmonyLib;
+using SPT.Reflection.Patching;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace stckytwl.HexagonClickingMinigame.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches;
+
+public class QteLoadBeatMapPatch : ModulePatch
 {
-    public class QteLoadBeatMapPatch : ModulePatch
+    protected override MethodBase GetTargetMethod()
     {
-        protected override MethodBase GetTargetMethod()
+        return AccessTools.Method(typeof(WorkoutBehaviour), nameof(WorkoutBehaviour.method_12));
+    }
+
+    [PatchPrefix]
+    private static bool PreFix(ref QuickTimeEvent[] quickTimeEvents)
+    {
+        var newQuickTimeEvents = new QuickTimeEvent[quickTimeEvents.Length];
+
+        for (var i = 0; i < quickTimeEvents.Length; i++)
         {
-            return typeof(WorkoutBehaviour).GetMethod("method_12", BindingFlags.Public | BindingFlags.Instance);
+            var qte = CreateQte(quickTimeEvents[i]);
+
+            newQuickTimeEvents[i] = qte;
         }
 
-        [PatchPrefix]
-        private static bool PreFix(ref QuickTimeEvent[] quickTimeEvents)
-        {
-            var newQuickTimeEvents = new QuickTimeEvent[quickTimeEvents.Length];
+        quickTimeEvents = newQuickTimeEvents;
 
-            for (var i = 0; i < quickTimeEvents.Length; i++)
-            {
-                var qte = CreateQte(quickTimeEvents[i]);
+        return true;
+    }
 
-                newQuickTimeEvents[i] = qte;
-            }
+    private static QuickTimeEvent CreateQte(QuickTimeEvent qte)
+    {
+        var randomPosition = GetRandomPosition();
+        var newQte = new QuickTimeEvent(qte.Type,
+            randomPosition,
+            qte.Speed,
+            qte.StartDelay,
+            qte.EndDelay,
+            qte.SuccessRange,
+            qte.Key);
 
-            quickTimeEvents = newQuickTimeEvents;
+        return newQte;
+    }
 
-            return true;
-        }
+    private static Vector2 GetRandomPosition()
+    {
+        const float margin = 0.1f;
 
-        private static QuickTimeEvent CreateQte(QuickTimeEvent qte)
-        {
-            var randomPosition = GetRandomPosition();
-            var newQte = new QuickTimeEvent(qte.Type,
-                randomPosition,
-                qte.Speed,
-                qte.StartDelay,
-                qte.EndDelay,
-                qte.SuccessRange,
-                qte.Key);
+        var x = Random.Range(margin, 1f - margin);
+        var y = Random.Range(margin, 1f - margin);
 
-            return newQte;
-        }
-
-        private static Vector2 GetRandomPosition()
-        {
-            const float margin = 0.1f;
-
-            var x = Random.Range(margin, 1f - margin);
-            var y = Random.Range(margin, 1f - margin);
-
-            return new Vector2(x, y);
-        }
+        return new Vector2(x, y);
     }
 }
