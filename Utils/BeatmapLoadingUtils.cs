@@ -149,7 +149,7 @@ namespace stckytwl.HexagonClickingMinigame.Patches
         private static EftResolution GetResolution()
         {
             var settings = Singleton<SharedGameSettingsClass>.Instance.Graphics.Settings;
-            var displaySettings = (GStruct237)settings.DisplaySettings;
+            var displaySettings = (GStruct249)settings.DisplaySettings;
             var resolution = displaySettings.Resolution;
 
             return resolution;

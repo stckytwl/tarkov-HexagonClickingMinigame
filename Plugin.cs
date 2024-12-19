@@ -32,7 +32,7 @@ namespace stckytwl.HexagonClickingMinigame
         {
             BeatmapPath = Config.Bind("",
                 "Beatmap file path",
-                "tarkin",
+                "beatmaps",
                 new ConfigDescription("Path to beatmap folder relative to \"BepInEx/Plugins/stckytwl.OSU\""));
         }
     }

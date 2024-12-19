@@ -33,11 +33,11 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup>
-        <TarkovDir Condition=" '$(TarkovDir)' == '' ">/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/</TarkovDir>
-        <TarkovManagedDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
-        <TarkovBepInExCoreDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/BepInEx\core\</TarkovBepInExCoreDir>
-        <TarkovBepInExSptPluginDir>/mnt/f6ff0a3b-a5ff-4f22-b9f7-8a646927903f/Games/EscapeFromTarkov/drive_c/Games/SPT - 3.9.4 Dev/BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
-        <TargetSptVersion>3.9.4</TargetSptVersion>
+        <TarkovDir Condition=" '$(TarkovDir)' == '' ">C:\Games\SPT - 3.10/</TarkovDir>
+        <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
+        <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
+        <TarkovBepInExSptPluginDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
+        <TargetSptVersion>3.10</TargetSptVersion>
         <SourceRevisionId>2.0.0</SourceRevisionId>
     </PropertyGroup>
     <ItemGroup>
@@ -89,13 +89,14 @@
         <Reference Include="UnityEngine.AudioModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.AudioModule.dll</HintPath>
         </Reference>
-    </ItemGroup>
-    <ItemGroup>
         <Reference Include="UnityEngine.IMGUIModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.IMGUIModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.TextRenderingModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Serialization">
+            <HintPath>$(TarkovManagedDir)Sirenix.Serialization.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
