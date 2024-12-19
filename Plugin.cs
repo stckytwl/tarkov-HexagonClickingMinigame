@@ -4,36 +4,35 @@ using BepInEx;
 using BepInEx.Configuration;
 using stckytwl.HexagonClickingMinigame.Patches;
 
-namespace stckytwl.HexagonClickingMinigame
+namespace stckytwl.HexagonClickingMinigame;
+
+[BepInPlugin("com.stckytwl.hexagonclickingminigame", "HexagonClickingMinigame", "2.0.0")]
+public class Plugin : BaseUnityPlugin
 {
-    [BepInPlugin("com.stckytwl.hexagonclickingminigame", "HexagonClickingMinigame", "2.0.0")]
-    public class Plugin : BaseUnityPlugin
+    public static bool IsQteRunning = false;
+    public static string Directory { get; private set; }
+    public static ConfigEntry<string> BeatmapPath;
+
+    private void Awake()
     {
-        public static bool IsQteRunning = false;
-        public static string Directory { get; private set; }
-        public static ConfigEntry<string> BeatmapPath;
+        Directory = Assembly.GetExecutingAssembly().Location.GetDirectory() + @"\";
+        PluginUtils.Logger = Logger;
 
-        private void Awake()
-        {
-            Directory = Assembly.GetExecutingAssembly().Location.GetDirectory() + @"\";
-            PluginUtils.Logger = Logger;
+        InitializeSettings();
 
-            InitializeSettings();
+        new QteRunningPatch().Enable();
+        new QteEndedPatch().Enable();
+        new QteEnableCursorPatch().Enable();
+        new QteClickablePatch().Enable();
+        new QteLoadBeatMapPatch().Enable();
+        new QteCreateGameObjectPatch().Enable();
+    }
 
-            new QteRunningPatch().Enable();
-            new QteEndedPatch().Enable();
-            new QteEnableCursorPatch().Enable();
-            new QteClickablePatch().Enable();
-            new QteLoadBeatMapPatch().Enable();
-            new QteCreateGameObjectPatch().Enable();
-        }
-
-        private void InitializeSettings()
-        {
-            BeatmapPath = Config.Bind("",
-                "Beatmap file path",
-                "beatmaps",
-                new ConfigDescription("Path to beatmap folder relative to \"BepInEx/Plugins/stckytwl.OSU\""));
-        }
+    private void InitializeSettings()
+    {
+        BeatmapPath = Config.Bind("",
+            "Beatmap file path",
+            "tarkin",
+            new ConfigDescription("Path to beatmap folder relative to \"BepInEx/Plugins/stckytwl.OSU\""));
     }
 }

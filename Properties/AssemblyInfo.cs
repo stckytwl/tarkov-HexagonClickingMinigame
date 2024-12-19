@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using DrakiaXYZ.VersionChecker;
 
 [assembly: AssemblyTitle("HexagonClickingMinigame")]
 [assembly: AssemblyDescription("")]
@@ -17,4 +16,3 @@ using DrakiaXYZ.VersionChecker;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: TarkovVersion(30626)]

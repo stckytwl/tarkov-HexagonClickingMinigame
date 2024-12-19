@@ -1,20 +1,19 @@
 using BepInEx.Logging;
 using EFT.Communications;
 
-namespace stckytwl.HexagonClickingMinigame
+namespace stckytwl.HexagonClickingMinigame;
+
+public static class PluginUtils
 {
-    public static class PluginUtils
+    public static ManualLogSource Logger;
+
+    public static void DisplayMessageNotification(string message)
     {
-        public static ManualLogSource Logger;
+        NotificationManagerClass.DisplayWarningNotification(message);
+    }
 
-        public static void DisplayMessageNotification(string message)
-        {
-            NotificationManagerClass.DisplayWarningNotification(message);
-        }
-
-        public static void DisplayWarningNotification(string message)
-        {
-            NotificationManagerClass.DisplayWarningNotification(message, ENotificationDurationType.Long);
-        }
+    public static void DisplayWarningNotification(string message)
+    {
+        NotificationManagerClass.DisplayWarningNotification(message, ENotificationDurationType.Long);
     }
 }

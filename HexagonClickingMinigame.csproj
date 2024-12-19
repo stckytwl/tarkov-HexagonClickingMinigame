@@ -118,7 +118,6 @@
         <Compile Include="Properties\ConfigurationManagerAttributes.cs"/>
         <Compile Include="Utils\BeatmapLoadingUtils.cs" />
         <Compile Include="Utils\PluginUtils.cs"/>
-        <Compile Include="VersionChecker\TarkovVersion.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="PeanutButter.INI\LICENSE.txt" />

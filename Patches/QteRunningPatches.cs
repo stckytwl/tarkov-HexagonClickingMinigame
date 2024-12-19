@@ -4,46 +4,45 @@ using EFT;
 using EFT.Hideout;
 using HarmonyLib;
 
-namespace stckytwl.HexagonClickingMinigame.Patches
+namespace stckytwl.HexagonClickingMinigame.Patches;
+
+public class QteRunningPatch : ModulePatch
 {
-    public class QteRunningPatch : ModulePatch
+    protected override MethodBase GetTargetMethod()
     {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(WorkoutBehaviour), nameof(WorkoutBehaviour.StartQte));
-        }
-
-        [PatchPostfix]
-        // ReSharper disable once InconsistentNaming
-        private static void PatchPostfix(WorkoutBehaviour __instance)
-        {
-            var isArmBroken = __instance.Boolean_0;
-            var isTired = __instance.Boolean_1;
-
-            if (isArmBroken || !isTired)
-            {
-                Logger.LogInfo("Player either has a broken arm or is tired. Skipping");
-                return;
-            }
-
-            Plugin.IsQteRunning = true;
-        }
+        return AccessTools.Method(typeof(WorkoutBehaviour), nameof(WorkoutBehaviour.StartQte));
     }
 
-    public class QteEndedPatch : ModulePatch
+    [PatchPostfix]
+    // ReSharper disable once InconsistentNaming
+    private static void PatchPostfix(WorkoutBehaviour __instance)
     {
-        protected override MethodBase GetTargetMethod()
+        var isArmBroken = __instance.Boolean_0;
+        var isTired = __instance.Boolean_1;
+
+        if (isArmBroken || !isTired)
         {
-            return AccessTools.Method(typeof(HideoutPlayerOwner), nameof(HideoutPlayerOwner.ExitQte));
+            Logger.LogInfo("Player either has a broken arm or is tired. Skipping");
+            return;
         }
 
-        [PatchPostfix]
-        // ReSharper disable once InconsistentNaming
-        private static void PatchPostfix(HideoutPlayerOwner __instance)
-        {
-            Plugin.IsQteRunning = false;
-            BeatmapLoader.LoadedAudioSource?.Release();
-            BeatmapLoader.LoadedAudioSource = null;
-        }
+        Plugin.IsQteRunning = true;
+    }
+}
+
+public class QteEndedPatch : ModulePatch
+{
+    protected override MethodBase GetTargetMethod()
+    {
+        return AccessTools.Method(typeof(HideoutPlayerOwner), nameof(HideoutPlayerOwner.ExitQte));
+    }
+
+    [PatchPostfix]
+    // ReSharper disable once InconsistentNaming
+    private static void PatchPostfix(HideoutPlayerOwner __instance)
+    {
+        Plugin.IsQteRunning = false;
+        BeatmapLoader.LoadedAudioSource?.Release();
+        BeatmapLoader.LoadedAudioSource = null;
     }
 }
