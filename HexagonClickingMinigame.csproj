@@ -103,6 +103,7 @@
         <Compile Include="Models\Beatmap.cs" />
         <Compile Include="Models\HitObjects.cs" />
         <Compile Include="Patches\QteGamePatches.cs" />
+        <Compile Include="Patches\QteHealthEffectsPatches.cs" />
         <Compile Include="Patches\QteInteractionPatches.cs"/>
         <Compile Include="Patches\QteLoadingPatches.cs"/>
         <Compile Include="Patches\QteRunningPatches.cs"/>
@@ -128,14 +129,18 @@
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <ItemGroup>
             <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll"/>
+            <OutputPDB Include="$(ProjectDir)$(OutDir)$(TargetName).pdb"/>
             <Resources Include="$(ProjectDir)Resources\*"/>
         </ItemGroup>
 
-        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>
+<!--        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\$(TargetName)"/>-->
+        <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\scripts\"/>
+        <Copy SourceFiles="@(OutputPDB)" DestinationFolder="$(TarkovDir)BepInEx\scripts\"/>
 
         <RemoveDir Directories="$(ProjectDir)release"/>
         <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
         <Copy SourceFiles="@(Resources)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\$(TargetName)"/>
+
         <ZipDirectory SourceDirectory="$(ProjectDir)release\$(TargetName)\" DestinationFile="$(ProjectDir)release\$(TargetName)-$(TargetSptVersion)-$(SourceRevisionId).zip"/>
     </Target>
 </Project>

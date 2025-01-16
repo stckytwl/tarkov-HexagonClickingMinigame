@@ -23,14 +23,18 @@ public class QteLoadBeatMapPatch : ModulePatch
         {
             BeatmapLoader.LoadBeatmap();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             PluginUtils.Logger.LogError(
                 $"Beatmap loading failed! Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt");
+            PluginUtils.Logger.LogError($"{ex}");
+
             PluginUtils.DisplayWarningNotification("Beatmap loading failed!");
             PluginUtils.DisplayWarningNotification(
                 $"Beatmap file \"{Plugin.Directory + Plugin.BeatmapPath.Value}\" is corrupt!");
-            quickTimeEvents = Array.Empty<QuickTimeEvent>();
+
+            quickTimeEvents = [];
+
             return true;
         }
 
@@ -47,11 +51,12 @@ public class QteLoadBeatMapPatch : ModulePatch
         quickTimeEvents = newQuickTimeEvents;
 
         if (BeatmapLoader.LoadedBeatMap.Audio is not null)
-            BeatmapLoader.LoadedAudioSource = Singleton<BetterAudio>.Instance.PlayAtPoint(new Vector3(),
-                BeatmapLoader.LoadedBeatMap.Audio,
-                0f,
-                BetterAudio.AudioSourceGroupType.Nonspatial,
-                100);
+        {
+            PluginUtils.Logger.LogInfo("LOADING AUDIOOOOOOOOOOOOOOOO");
+            var clip = BeatmapLoader.LoadedBeatMap.Audio;
+            var source = BetterAudio.AudioSourceGroupType.Nonspatial;
+            BeatmapLoader.LoadedAudioSource = Singleton<BetterAudio>.Instance.PlayAtPoint(new Vector3(), clip, 0f, source, 100);
+        }
 
         return true;
     }
@@ -61,8 +66,11 @@ public class QteLoadBeatMapPatch : ModulePatch
         const EQteType type = EQteType.ShrinkingCircle;
         var position = hitObject.Position;
         const float speed = 3f;
-        var startDelay = (float)hitObject.BeforeWait / 1000 * 0.9f;
-        var endDelay = (float)hitObject.BeforeWait / 1000 * 0.1f;
+        // var startDelay = (float)hitObject.BeforeWait / 1000 * 0.9f;
+        // var endDelay = (float)hitObject.BeforeWait / 1000 * 0.1f;
+        var startDelay = (float)hitObject.BeforeWait;
+        var endDelay = (float)hitObject.BeforeWait;
+
         var successRange = new Vector2(0.5f, 0.1f);
         const KeyCode key = KeyCode.Mouse0;
 

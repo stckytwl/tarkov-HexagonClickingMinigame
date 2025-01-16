@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using SPT.Common.Utils;
 using Comfort.Common;
 using EFT.Settings.Graphics;
 using PeanutButter.INI;
 using stckytwl.HexagonClickingMinigame.Models;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace stckytwl.HexagonClickingMinigame.Patches;
 
@@ -23,9 +25,9 @@ public static class BeatmapLoader
 
         var beatmapPath = Plugin.Directory + Plugin.BeatmapPath.Value;
 
-        if (!VerifyBeatmapFolder(beatmapPath, out var osuFile))
+        if (!VerifyBeatmapFolder(beatmapPath, out var osuFile, out var audioFile))
         {
-            LoadedBeatMap = new Beatmap("", null, new List<HitObject>(), 0.825f);
+            LoadedBeatMap = new Beatmap("", null, [], 0.825f);
             return;
         }
 
@@ -55,14 +57,18 @@ public static class BeatmapLoader
             break;
         }
 
-        var beatmap = new Beatmap(beatmapName, null, hitObjects, 0.825f);
+        var audioClip = Task.Run(async () => await LoadAudioClip(audioFile));
+        var beatmap = new Beatmap(beatmapName, audioClip.Result, hitObjects, 0.825f);
+
         LoadedBeatMap = beatmap;
+
         PluginUtils.DisplayMessageNotification($"Loaded Beatmap {beatmapName}");
     }
 
-    private static bool VerifyBeatmapFolder(string folderPath, out string osuFile)
+    private static bool VerifyBeatmapFolder(string folderPath, out string osuFile, out string audioFile)
     {
         osuFile = null;
+        audioFile = null;
 
         if (!Directory.Exists(folderPath))
         {
@@ -87,10 +93,18 @@ public static class BeatmapLoader
                     }
 
                     break;
+                case ".mp3":
+                    if (audioFile is null)
+                    {
+                        audioFile = file;
+                        PluginUtils.Logger.LogInfo($"Using \"{audioFile}\" as audio file.");
+                    }
+
+                    break;
             }
         }
 
-        return osuFile is not null;
+        return osuFile is not null && audioFile is not null;
     }
 
     private static bool ParseHitObject(string rawHitObject, out HitObject hitObject)
@@ -153,5 +167,43 @@ public static class BeatmapLoader
         var resolution = displaySettings.Resolution;
 
         return resolution;
+    }
+
+    public static async Task<AudioClip> LoadAudioClip(string path)
+    {
+        var extension = Path.GetExtension(path);
+        AudioType audioType;
+        switch (extension)
+        {
+            case ".wav":
+                audioType = AudioType.WAV;
+                break;
+            case ".ogg":
+                audioType = AudioType.OGGVORBIS;
+                break;
+            case ".mp3":
+                audioType = AudioType.MPEG;
+                break;
+            default:
+                PluginUtils.Logger.LogWarning($"\"{Path.GetFileName(path)}\" is not a supported audio file!");
+                return null;
+        }
+
+        var uwr = UnityWebRequestMultimedia.GetAudioClip(path, audioType);
+        var sendWeb = uwr.SendWebRequest();
+
+        while (!sendWeb.isDone)
+            await Task.Yield();
+
+        if (uwr.isNetworkError || uwr.isHttpError)
+        {
+            PluginUtils.Logger.LogWarning($"Failed To Fetch Audio Clip \"{Path.GetFileNameWithoutExtension(path)}\"");
+            return null;
+        }
+
+        var audioclip = DownloadHandlerAudioClip.GetContent(uwr);
+        audioclip.name = Path.GetFileNameWithoutExtension(path);
+
+        return audioclip;
     }
 }
