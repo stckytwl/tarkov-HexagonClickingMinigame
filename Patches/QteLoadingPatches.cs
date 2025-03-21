@@ -15,8 +15,9 @@ public class QteLoadBeatMapPatch : ModulePatch
     }
 
     [PatchPrefix]
-    private static bool PreFix(ref QuickTimeEvent[] quickTimeEvents)
+    private static bool PreFix(ref QteData qteData)
     {
+        var quickTimeEvents = qteData.QuickTimeEvents;
         var newQuickTimeEvents = new QuickTimeEvent[quickTimeEvents.Length];
 
         for (var i = 0; i < quickTimeEvents.Length; i++)
@@ -26,7 +27,7 @@ public class QteLoadBeatMapPatch : ModulePatch
             newQuickTimeEvents[i] = qte;
         }
 
-        quickTimeEvents = newQuickTimeEvents;
+        qteData.QuickTimeEvents = newQuickTimeEvents;
 
         return true;
     }

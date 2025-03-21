@@ -15,29 +15,20 @@
         <LangVersion>latest</LangVersion>
         <Deterministic>true</Deterministic>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
+        <OutputPath>bin\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup>
-        <TarkovDir Condition=" '$(TarkovDir)' == '' ">C:\Games\SPT - 3.10/</TarkovDir>
+        <TarkovDir Condition=" '$(TarkovDir)' == '' ">C:\Games\SPT - 3.11\</TarkovDir>
         <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
         <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
         <TarkovBepInExSptPluginDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovBepInExSptPluginDir>
-        <TargetSptVersion>3.10</TargetSptVersion>
+        <TargetSptVersion>3.11</TargetSptVersion>
         <SourceRevisionId>1.0.0</SourceRevisionId>
     </PropertyGroup>
     <ItemGroup>
@@ -62,9 +53,9 @@
         <Reference Include="Comfort.Unity">
             <HintPath>$(TarkovManagedDir)Comfort.Unity.dll</HintPath>
         </Reference>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="mscorlib"/>
-        <Reference Include="System"/>
+        <Reference Include="Sirenix.Serialization">
+            <HintPath>$(TarkovManagedDir)Sirenix.Serialization.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine">
             <HintPath>$(TarkovManagedDir)UnityEngine.dll</HintPath>
         </Reference>
@@ -80,14 +71,15 @@
         <Reference Include="UnityEngine.InputModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.InputModule.dll</HintPath>
         </Reference>
-    </ItemGroup>
-    <ItemGroup>
         <Reference Include="UnityEngine.IMGUIModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.IMGUIModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.TextRenderingModule">
             <HintPath>$(TarkovManagedDir)UnityEngine.TextRenderingModule.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.CSharp"/>
+        <Reference Include="mscorlib"/>
+        <Reference Include="System"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Patches\QteInteractionPatches.cs"/>
@@ -105,10 +97,12 @@
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <ItemGroup>
             <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll"/>
+            <OutputPDB Include="$(ProjectDir)$(OutDir)$(TargetName).pdb"/>
             <Resources Include="$(ProjectDir)Resources\*"/>
         </ItemGroup>
 
         <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(TarkovDir)BepInEx\plugins\"/>
+        <Copy SourceFiles="@(OutputPDB)" DestinationFolder="$(TarkovDir)BepInEx\plugins\"/>
 
         <RemoveDir Directories="$(ProjectDir)release"/>
         <Copy SourceFiles="@(OutputDLL)" DestinationFolder="$(ProjectDir)release\$(TargetName)\BepInEx\plugins\"/>
